@@ -11,6 +11,7 @@ def select_base_settings(window) -> None:
     y = window.topright[1] + base_settings[1]
     pg.moveTo(x, y)
     pg.click()
+    pause()
     return
 
 def change_coordinate_system(epsg, window) -> None:
@@ -28,10 +29,14 @@ def change_coordinate_system(epsg, window) -> None:
     y = center_y + epsg_search[1]
     pg.moveTo(x, y)
     pg.click()
+    pause()
+
     logging.info("Inputting EPSG code.")
     pg.moveTo(center_x + 0, center_y - 60) # Move to search input
     pg.click()
     pg.write(epsg)
+    pause()
+
     logging.debug("Selecting EPSG.")
     pg.moveRel(0, 107) # Move to the found EPSG
     pg.click()
@@ -39,6 +44,7 @@ def change_coordinate_system(epsg, window) -> None:
     pg.moveTo(center_x + 200, center_y + 108) # Move to the OK button
     pg.click()
     logging.debug("Finished inputting EPSG.")
+    pause()
     return
 
 def input_coordinates(coordinates:dict, window):
@@ -53,6 +59,8 @@ def input_coordinates(coordinates:dict, window):
     center_y = window.topleft[1] + window.height / 2
     # X Input
     pg.moveTo(center_x - 388, center_y - 6)
+    pause()
+
     pg.click()
     pg.write(coordinates['x'])
     # Y Input
@@ -63,10 +71,16 @@ def input_coordinates(coordinates:dict, window):
     pg.moveRel(180, 0)
     pg.click()
     pg.write(coordinates['z'])
+    pause()
+
     # Batch edit button
     pg.moveTo(center_x + 80, center_y - 10)    
     pg.click()
+    pause()
+
+    # Save button
     pg.moveTo(center_x + 420, center_y + 175)
     pg.click()
     logging.debug("Finished inputting base coordinates.")
+    pause()
     return
