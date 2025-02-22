@@ -1,6 +1,7 @@
 import pyautogui as pg
 import logging
 from funcs.utils import pause
+import time
 
 def new_lidar_mission(window) -> None:
     """
@@ -79,9 +80,11 @@ def input_mission_data(data_dir:str, window) -> None:
     pg.moveTo(window.topright[0] - 170, window.topright[1] + 182)
     pg.click()
     pause()
+    time.sleep(0.1)
     
     pg.write(data_dir)
     pause()
+    time.sleep(0.1)
 
     pg.press('enter')
     pause()
