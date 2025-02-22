@@ -5,6 +5,7 @@ import pyautogui as pg
 from funcs.window import get_terra_window, focus_terra
 from funcs.inputs import new_lidar_mission, name_mission, input_mission_data
 from funcs.base_settings import select_base_settings, change_coordinate_system, input_coordinates
+from funcs.parameters import modify_parameters
 
 # Set logging level
 logging.basicConfig(
@@ -64,6 +65,8 @@ def main() -> None:
         select_base_settings(window)
         change_coordinate_system(EPSG, window)
         input_coordinates(BASE_COORDINATES, window)
+
+    modify_parameters(window)
 
     return_mouse_pos(initial_mouse_pos)
     return
