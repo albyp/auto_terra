@@ -1,5 +1,6 @@
 import logging
 import pyautogui as pg
+from funcs.utils import pause
 
 def select_base_settings(window) -> None:
     """

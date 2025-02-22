@@ -1,5 +1,6 @@
 import pyautogui as pg
 import logging
+from funcs.utils import pause
 
 def new_lidar_mission(window) -> None:
     """

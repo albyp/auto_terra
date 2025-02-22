@@ -1,5 +1,4 @@
 import logging
-import time
 import pyautogui as pg
 
 # Import window functions
@@ -13,13 +12,6 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-
-# Global delay
-DEBUG_DELAY = 1.0
-def pause() -> None:
-    """Pause for debugging purposes."""
-    time.sleep(DEBUG_DELAY)
-
 
 # Defaults for testing
 from config import MISSION_NAME, MISSION_DATA_DIR, EPSG, BASE_COORDINATES
