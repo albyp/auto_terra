@@ -19,26 +19,33 @@ def new_lidar_mission(window) -> None:
     time.sleep(0.1)
     return
 
-def name_mission(mission:str) -> None:
+def name_mission(mission:str, window) -> None:
     """Clear the default mission name and input the given parameter."""
     logging.debug("Clearing mission name")
-    pg.hotket('ctrl', 'a')
+    pg.hotkey('ctrl', 'a')
     time.sleep(0.1)
     pg.press('backspace')
     logging.debug(f"Inputting mission name: '{mission}'.")
     pg.write(mission)
+    pg.moveTo(window.topleft[0] + window.width / 2 + 160, window.topleft[1] + window.height / 2 + 70) # Move to OK button
+    pg.click()
     return
 
-def input_mission_data(data_dir:str) -> None:
-    """Paste the input mission data directory for processing.
+def input_mission_data(data_dir:str, window) -> None:
+    """Open the folder input, write the mission data directory for processing.
     Parameters
     data_dir (str) : Directory for LiDAR data
     """
     logging.debug("Inputting mission data to DJI Terra.")
+    pg.moveTo(window.topright[0] - 170, window.topright[1] + 182)
+    pg.click()
+    time.sleep(0.1)
     pg.write(data_dir)
     time.sleep(0.1)
     pg.press('enter')
     time.sleep(0.1)
+    pg.press('tab')
     pg.press('enter')
+    time.sleep(1)
     logging.info('Finishing inputting LiDAR data to DJI Terra')
     return
