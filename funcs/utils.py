@@ -1,6 +1,6 @@
 import time
 
-DEBUG_DELAY = 1.0
+DEBUG_DELAY = 0.1
 
 def pause() -> None:
     """Pause for debugging purposes."""
