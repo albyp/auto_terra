@@ -1,9 +1,16 @@
 import logging
 import pyautogui as pg
-import time
 
 def select_base_settings(window) -> None:
-    """Opens the Base Station settings menu."""
+    """
+    Opens the Base Station settings menu.
+
+    Args:
+        window (object) : A `pygetwindow` Window object representing the DJI Terra application
+
+    Returns:
+        None
+    """
     logging.debug("Opening base station settings menu.")
     # Offset from top right
     base_settings = (-30, 221)
@@ -14,11 +21,18 @@ def select_base_settings(window) -> None:
     pause()
     return
 
+
 def change_coordinate_system(epsg, window) -> None:
-    """Open the coordinate system menu and change the system to given epsg code.
-    Parameters
-    epsg (str) : EPSG code for base coordinate system.
-    window (object) : pygetwindow object
+    """
+    Changes coordinate system for processing data.
+
+    Open the coordinate system menu and change to given epsg code.
+    Args:
+        epsg (str) : EPSG code for base coordinate system
+        window (object) : A `pygetwindow` Window object representing the DJI Terra application
+
+    Returns:
+        None
     """
     logging.debug("Opening coordinate sytem modifier")
     # Offset from center
@@ -47,12 +61,20 @@ def change_coordinate_system(epsg, window) -> None:
     pause()
     return
 
+
 def input_coordinates(coordinates:dict, window):
-    """Input base station coordinates from dictionary.
+    """
+    Load base station coordinates for processing data.
+
+    Uses mouse input and keyboard input to enter coordinate data for the base station.
+    Note: Uses a batch edit method.
     
-    Parameters:
-    coordinates (dict) : x, y, z values for base coordinate
-    window (object) : pygetwindow object
+    Args:
+        coordinates (dict) : x, y, z values for base coordinate
+        window (object) : A `pygetwindow` Window object representing the DJI Terra application
+
+    Returns:
+        None
     """
     logging.info("Inputting base coordinates.")
     center_x = window.topleft[0] + window.width / 2

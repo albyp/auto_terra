@@ -1,9 +1,18 @@
 import pyautogui as pg
 import logging
-import time
 
 def new_lidar_mission(window) -> None:
-    """Create new mission from keyboard shortcut and mouse click"""
+    """
+    Create new mission in DJI Terra.
+
+    This function triggers the 'New Mission' shortcut and selects the 'LiDAR Mission' type by selecting the button.
+
+    Args:
+        window (object) : A `pygetwindow` Window object representing the DJI Terra application
+
+    Returns:
+        None
+    """
     logging.debug("Creating new mission using keyboard shortcut")
     pg.hotkey('ctrl', 'n')
     pause()
@@ -21,8 +30,20 @@ def new_lidar_mission(window) -> None:
     pause()
     return
 
+
 def name_mission(mission:str, window) -> None:
-    """Clear the default mission name and input the given parameter."""
+    """
+    Write mission name to DJI Terra project.
+
+    This function writes the given mission name to the DJI Terra project.
+
+    Args:
+        mission (str) : String to input to DJI Terra
+        window (object) : A `pygetwindow` Window object representing the DJI Terra application
+    
+    Returns:
+        None
+    """
     logging.debug("Clearing mission name")
     pg.hotkey('ctrl', 'a')
     pause()
@@ -39,10 +60,19 @@ def name_mission(mission:str, window) -> None:
     pause()
     return
 
+
 def input_mission_data(data_dir:str, window) -> None:
-    """Open the folder input, write the mission data directory for processing.
-    Parameters
-    data_dir (str) : Directory for LiDAR data
+    """
+    Input the directory for LiDAR data to be loaded from
+    
+    Open the folder input manu, input the data_dir string and accept the prompts.
+
+    Args:
+        data_dir (str) : String of the directory where LiDAR data is stored
+        window (object) : A `pygetwindow` Window object representing the DJI Terra application
+
+    Returns:
+        None
     """
     logging.debug("Inputting mission data to DJI Terra.")
     pg.moveTo(window.topright[0] - 170, window.topright[1] + 182)

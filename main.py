@@ -16,27 +16,41 @@ logging.basicConfig(
 
 # Global delay
 DEBUG_DELAY = 1.0
-def pause():
+def pause() -> None:
     """Pause for debugging purposes."""
     time.sleep(DEBUG_DELAY)
+
 
 # Defaults for testing
 from config import MISSION_NAME, MISSION_DATA_DIR, EPSG, BASE_COORDINATES
 PROCESS_BASE = True
 
-
 def get_initial_mouse_pos() -> tuple:
-    """Get the initial mouse position before running script.
-    Return (tuple) : Initial mouse position"""
+    """
+    Get the initial mouse position before running script.
+
+    Returns:
+        pos (tuple) : Initial mouse position
+    """
     logging.debug("Recording the intial mouse position.")
     pos = pg.position()
     return pos
 
-def return_mouse_pos(inital_mouse_pos) -> None:
-    """Return the mouse to the intial position."""
+
+def return_mouse_pos(inital_mouse_pos:tuple) -> None:
+    """
+    Return the mouse to the intial position.
+
+    Args:
+        initial_mouse_pos (tuple) : Tuple containing (X, Y) position for the mouse intial position.
+
+    Returns:
+        None    
+    """
     logging.debug("Returning mouse to the initial position.")
     pg.moveTo(inital_mouse_pos)
     return
+
 
 def main() -> None:
     initial_mouse_pos = get_initial_mouse_pos()
@@ -60,7 +74,8 @@ def main() -> None:
         input_coordinates(BASE_COORDINATES, window)
 
     return_mouse_pos(initial_mouse_pos)
-    pass
+    return
+
 
 # Run program
 if __name__ == '__main__':
