@@ -65,9 +65,12 @@ Modify these values as needed to suit your project requirements.
 
 # Future Enhancements
 
-- Change `moveTo(x, y)` functions to `moveTo(pyautogui.locateOnScreen())` functions
-- Add exception handling for UI changes or unexpected errors
-- Develop a GUI for easier configuration
+> **Note**
+> - [x] indicates the feature is currently in development
+
+- [x] Change `moveTo(x, y)` functions to `moveTo(pyautogui.locateOnScreen())` functions
+- [ ] Add exception handling for UI changes or unexpected errors (**PLANNNG PHASE**)
+- [ ] Develop a GUI for easier configuration
 
 # License
 
