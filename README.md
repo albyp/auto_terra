@@ -60,10 +60,12 @@ Modify these values as needed to suit your project requirements.
 
 - The script assumes a consistent UI layout in DJI Terra; UI changes in software updates may require adjustments.
 - Run the script in an environment where screen resolution and scaling match the expected layout.
+- DJI Terra should be run on the primary monitor to ensure `pyautogui` `locateOnScreen()` function works as expected.
 - Logs will be generated for debugging and process tracking.
 
 # Future Enhancements
 
+- Change `moveTo(x, y)` functions to `moveTo(pyautogui.locateOnScreen())` functions
 - Add exception handling for UI changes or unexpected errors
 - Develop a GUI for easier configuration
 
