@@ -6,3 +6,8 @@ BASE_COORDINATES = {
     "y": "6302560.234",
     "z": "301.750"
 }
+
+MISSIONS = [
+    ['YYMMDD-ProjectName', 'C:\\Pix4D\\YYMMDD-ProjectName\\1. LiDAR'],
+    ['YYMMDD-ProjectName2', 'C:\\Pix4D\\YYMMDD-ProjectName2\\1. LiDAR']
+]
