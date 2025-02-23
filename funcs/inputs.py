@@ -89,6 +89,8 @@ def input_mission_data(data_dir:str, window) -> None:
 
     pg.press('tab')
     pg.press('enter')
+    # TODO Add extended wait if large datasets are being imported (shows loading bar)
+    # TODO Implement locateOnScreen to check for 'Tip - Missing certain data in the imported files'
     logging.info('Finishing inputting LiDAR data to DJI Terra')
     pause()
 
