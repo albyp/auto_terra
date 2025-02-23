@@ -42,7 +42,8 @@ def change_coordinate_system(epsg, window) -> None:
     center_y = window.topleft[1] + window.height / 2
     x = center_x + epsg_search[0]
     y = center_y + epsg_search[1]
-    pg.moveTo(x, y)
+    # pg.moveTo(x, y)
+    pg.moveTo(pg.locateOnScreen('funcs/base_search_button.png')) # testing use for when multiple data directories are imported
     pg.click()
     pause()
 
@@ -81,7 +82,8 @@ def input_coordinates(coordinates:dict, window):
     center_x = window.topleft[0] + window.width / 2
     center_y = window.topleft[1] + window.height / 2
     # X Input
-    pg.moveTo(center_x - 388, center_y - 6)
+    # pg.moveTo(center_x - 388, center_y - 6)
+    pg.moveTo(pg.locateOnScreen('funcs/base_first_input.png')) # testing for multiple datasets
     pause()
 
     pg.click()
@@ -97,12 +99,14 @@ def input_coordinates(coordinates:dict, window):
     pause()
 
     # Batch edit button
-    pg.moveTo(center_x + 80, center_y - 10)    
+    # pg.moveTo(center_x + 80, center_y - 10)    
+    pg.moveRel(130, 0)
     pg.click()
     pause()
 
     # Save button
-    pg.moveTo(center_x + 420, center_y + 175)
+    # pg.moveTo(center_x + 420, center_y + 175)
+    pg.moveTo(pg.locateOnScreen('funcs/base_save_button.png', confidence=0.9))
     pg.click()
     logging.debug("Finished inputting base coordinates.")
     pause()
