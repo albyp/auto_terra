@@ -1,7 +1,24 @@
 import time
 import pyautogui as pg
+import keyboard
+import logging
+from funcs.state import stop_script
 
 DEBUG_DELAY = 0.2
+
+def return_mouse_pos(initial_pos:tuple) -> None:
+    """
+    Return the mouse to the initial position.
+
+    Args:
+        initial_mouse_pos (tuple) : Tuple containing (X, Y) position for the mouse initial position.
+
+    Returns:
+        None        
+    """
+    logging.debug("Returning mouse to the initial position.")
+    pg.moveTo(initial_pos)
+
 
 def pause() -> None:
     """Pause for debugging purposes."""
@@ -33,3 +50,26 @@ def move_click_pause(window, offset: tuple[int, int]) -> None:
     move_rel_top_right(window, offset)
     pg.click()
     pause()
+
+
+def check_interrupt() -> None:
+    """Continuously checks for interruption (esc key or right-click)."""
+    global stop_script
+    while not stop_script:
+        if stop_script or keyboard.is_pressed("esc"):
+            logging.warning("Interrupt detected. Exiting script...")
+            stop_script = True
+        time.sleep(0.1) # Prevent excessive CPU usage for threaded task
+
+
+def on_right_click(x, y, button, pressed):
+        """Stops script execution on right-click."""
+        global stop_script
+        if button == mouse.Button.right and pressed:
+            logging.warning("Right-click detected. Stopping script...")
+            stop_script = True
+
+
+def processing_confirm() -> None:
+    logging.info("Waiting for confirmation.")
+    pg.confirm("Click OK to continue processing.", "Auto Terra script")

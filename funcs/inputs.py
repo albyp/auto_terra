@@ -75,6 +75,7 @@ def input_mission_data(data_dir:str, window) -> None:
         None
     """
     logging.debug("Inputting mission data to DJI Terra.")
+    time.sleep(1)
     pg.moveTo(window.topright[0] - 170, window.topright[1] + 182)
     pg.click()
     pause()
@@ -95,19 +96,12 @@ def input_mission_data(data_dir:str, window) -> None:
     pause()
 
 
-def start_processing(window, auto_accept=False) -> None:
+def start_processing() -> None:
     """
     Modify the oarameters to suit the standard processing workflow.
 
     Note that these options will select medium quality cloud,
     disable ortho map and change output datum and geoids to second option.
-
-    Args:
-        window (object) : A `pygetwindow` Window object representing the DJI Terra application
-        auto_accept (boolean) : Allow the user to auto accept the final processing step
-
-    Returns:
-        None
     """
     start_processing = (-200, 1000)
     final_ok = (-720, 820)
@@ -116,12 +110,12 @@ def start_processing(window, auto_accept=False) -> None:
     # move_click_pause(window, start_processing)
     pg.moveTo(pg.locateOnScreen('funcs/start_processing.png', confidence=0.8))
     pg.click()
-    
-    if auto_accept:
-        # move_click_pause(window, final_ok)
-        pg.moveTo(pg.locateOnScreen('funcs/ok_processing.png', confidence=0.8))
-        pg.click()
-        logging.info("Initiated 'Start Processing' sequence.\nI like your style!")
-        # Move to home button and click to expand
-        pg.moveTo(window.topleft[0] + 40, window.topleft[1] + 45)
-        pg.click()
+
+
+def ok_processing(window) -> None:
+    pg.moveTo(pg.locateOnScreen('funcs/ok_processing.png', confidence=0.8))
+    pg.click()
+    logging.info("Initiated 'Start Processing' sequence.\nI like your style!")
+    # Move to home button and click to expand
+    pg.moveTo(window.topleft[0] + 40, window.topleft[1] + 45)
+    pg.click()
