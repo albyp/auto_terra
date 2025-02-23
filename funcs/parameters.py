@@ -1,30 +1,8 @@
 import logging
 import pyautogui as pg
-from funcs.utils import pause
+from funcs.utils import move_click_pause
 
-def move_rel_top_right(window, offset: tuple[int, int]) -> None:
-    # pg.moveTo(window.topright[0] + offset[0] - 9, window.topright[1] + offset[1] - 8) # bullshit mod for extra monitors
-    pg.moveTo(window.topright[0] + offset[0], window.topright[1] + offset[1])
-
-
-def move_click_pause(window, offset: tuple[int, int]) -> None:
-    """
-    Moves the mouse to position defined by offset (relative to top right),
-    Clicks the mouse and then pauses.
-    
-    Args:
-        window (object) : A `pygetwindow` Window object representing the DJI Terra application
-        offset (tuple[int, int]) : The x, y offset to move relative from window top right.
-
-    Returns:
-        None
-    """
-    move_rel_top_right(window, offset)
-    pg.click()
-    pause()
-
-
-def modify_parameters(window, auto_accept=False) -> None:
+def modify_parameters(window) -> None:
     """
     Modify the oarameters to suit the standard processing workflow.
 
@@ -33,7 +11,6 @@ def modify_parameters(window, auto_accept=False) -> None:
 
     Args:
         window (object) : A `pygetwindow` Window object representing the DJI Terra application
-        auto_accept (boolean) : Allow the user to auto accept the final processing step
 
     Returns:
         None
@@ -51,8 +28,6 @@ def modify_parameters(window, auto_accept=False) -> None:
     second_datum_input = (-200, 907)
     geoid = (-200, 602)
     second_geoid_input = (-200, 723)
-    start_processing = (-200, 1000)
-    final_ok = (-720, 820)
 
     logging.info("Modifying process parameters.")
     logging.debug("Opening parameters toggle menu.")
@@ -78,10 +53,9 @@ def modify_parameters(window, auto_accept=False) -> None:
     move_click_pause(window, horiz_datum)
     move_click_pause(window, second_datum_input)
     pg.scroll(-5000)
-    move_click_pause(window, geoid)
-    move_click_pause(window, second_geoid_input)
-    move_click_pause(window, start_processing)
-    
-    if auto_accept:
-        move_click_pause(window, final_ok)
-        logging.info("Initiated 'Start Processing' sequence.\nI like your style!")
+    # move_click_pause(window, geoid)
+    pg.moveTo(pg.locateOnScreen('funcs/param_geoid_default.png', confidence=0.8))
+    pg.click()
+    # move_click_pause(window, second_geoid_input)
+    pg.moveRel(0, 117)
+    pg.click()
