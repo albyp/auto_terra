@@ -9,7 +9,12 @@ def pause() -> None:
 
 
 def move_rel_top_right(window, offset: tuple[int, int]) -> None:
-    # pg.moveTo(window.topright[0] + offset[0] - 9, window.topright[1] + offset[1] - 8) # bullshit mod for extra monitors
+    """Move mouse relative to top right of window
+
+    Args:
+        window (object): A `pygetwindow` Window object representing the DJI Terra applcation
+        offset (tuple[int, int]): The x, y offset to move relative from window top right.
+    """
     pg.moveTo(window.topright[0] + offset[0], window.topright[1] + offset[1])
 
 
@@ -20,7 +25,7 @@ def move_click_pause(window, offset: tuple[int, int]) -> None:
     
     Args:
         window (object) : A `pygetwindow` Window object representing the DJI Terra application
-        offset (tuple[int, int]) : The x, y offset to move relative from window top right.
+        offset (tuple[int, int]) : The x, y offset to move relative from window top right - feeds into move_rel_top_right.
 
     Returns:
         None
