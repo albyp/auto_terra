@@ -74,6 +74,7 @@ def main() -> None:
 
 
                 return_mouse_pos(initial_mouse_pos)
+            break
 
         except Exception as e:
             logging.error(f"Error during execution: {e}")
