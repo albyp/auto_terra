@@ -91,6 +91,11 @@ There is an `example.config.py` containing the boilerplate for the config. Updat
 - [ ] Add full control over Horizontal Datum and Geoid selection for output
 - [ ] Auto rename the output point cloud and option to move to specific destination
 
+# Known Issues
+
+- Cancel button on `processing_confirm` still results in 'OK'
+- When not running in Maximised state, error occurs at base coordinate functions
+
 # License
 
 This project is licensed under the MIT License.
