@@ -82,10 +82,11 @@ There is an `example.config.py` containing the boilerplate for the config. Updat
 # Future Enhancements
 
 > **Note**
-> - [x] indicates the feature is currently in development
+> - 🟢 indicates the feature is currently in development
+> - 🔵 indicates the feature is being planned
 
-- [x] Change `moveTo(x, y)` functions to `moveTo(pyautogui.locateOnScreen())` functions
-- [ ] Add exception handling for UI changes or unexpected errors (**PLANNNG PHASE**)
+- 🟢 Change `moveTo(x, y)` functions to `moveTo(pyautogui.locateOnScreen())` functions
+- 🔵 Add exception handling for UI changes or unexpected errors
 - [ ] Develop a GUI for easier configuration
 - [ ] Add full control over Horizontal Datum and Geoid selection for output
 - [ ] Auto rename the output point cloud and option to move to specific destination
