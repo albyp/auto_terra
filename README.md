@@ -14,6 +14,9 @@ This Python script automates the LiDAR processing workflow in DJI Terra using `p
 - Automates clicking and UI navigation to streamline operations
 - Returns the mouse to its initial position after execution
 
+> **Note**
+> The script currently takes approximately 20 seconds per mission to execute, including user input to accept processing prompt.
+
 # Installation
 
 ## Prerequisites
@@ -27,40 +30,53 @@ This script requries the following Python libraries:
 - `pyautogui` (for UI automation)
 - `pygetwindow` (for window detection and locations)
 - `logging` (for debugging and monitoring script execution)
+- `pynput` (check for keyboard and mouse inputs for script interruption)
 
 # Usage
 
-1. Open DJI Terra and maximise it on a monitor to ensure best compatability.
-2. Run the script using:
+1. Update the `config.py` file to suit your needs
+2. Open DJI Terra and maximize it on the primary monitor
+3. Run the script using:
     `python main.py`
-3. The script will automatically perform the following:
+4. The script will automatically perform the following:
     - Detect and focus the DJI Terra window
     - Create a new LiDAR mission
     - Input mission data directory
     - Configure base settings and coordinate systems
     - Modify processing parameters
-    - Initiate processing (if `auto_accept=True` in `modify_parameters`)
+    - Initiate processing (if `AUTO_ACCEPT = True` in `config.py`)
 
 # Configuration
 
 The script uses a `config.py` file to define default values:
 ``` python
-MISSION_NAME = "YYMMDD-ProjectName_LiDAR"
-MISSION_DATA_DIR = "C:\\Pix4D\\YYMMDD-ProjectName\\1. LiDAR"
-EPSG = "28350" # EPSG code for coordinate system
+# Determine whether to auto accept the processing task once inputs are complete
+AUTO_ACCEPT = False
+
+# Base coordinate EPSG code
+EPSG = "28350"
+
+# Base coordinates (for RTK base used with drone)
 BASE_COORDINATES = {
     "x": "420550.295",
     "y": "6302560.234",
     "z": "301.750"
 }
+
+# Mission inputs, use single line for single mission
+MISSIONS = [
+    ['YYMMDD-ProjectName', 'C:\\Pix4D\\YYMMDD-ProjectName\\1. LiDAR'],
+    ['YYMMDD-ProjectName2', 'C:\\Pix4D\\YYMMDD-ProjectName2\\1. LiDAR']
+]
 ```
 Modify these values as needed to suit your project requirements.
+There is an `example.config.py` containing the boilerplate for the config. Update this as required and rename to `config.py`.
 
 # Notes
 
 - The script assumes a consistent UI layout in DJI Terra; UI changes in software updates may require adjustments.
-- Run the script in an environment where screen resolution and scaling match the expected layout.
-- DJI Terra should be run on the primary monitor to ensure `pyautogui` `locateOnScreen()` function works as expected.
+- Run the script when DJI Terra is maximized and on the primary monitor to ensure `pyautogui` `locateOnScreen()` function works as expected.
+- The Horizontal Datum and Geoid settings currently select the 2nd option from the list.
 - Logs will be generated for debugging and process tracking.
 
 # Future Enhancements
@@ -71,6 +87,8 @@ Modify these values as needed to suit your project requirements.
 - [x] Change `moveTo(x, y)` functions to `moveTo(pyautogui.locateOnScreen())` functions
 - [ ] Add exception handling for UI changes or unexpected errors (**PLANNNG PHASE**)
 - [ ] Develop a GUI for easier configuration
+- [ ] Add full control over Horizontal Datum and Geoid selection for output
+- [ ] Auto rename the output point cloud and option to move to specific destination
 
 # License
 
