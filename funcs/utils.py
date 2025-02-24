@@ -1,6 +1,7 @@
 import time
 import pyautogui as pg
 import keyboard
+from pynput import mouse
 import logging
 from funcs.state import stop_script
 
