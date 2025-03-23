@@ -14,7 +14,7 @@ from funcs.parameters import modify_parameters
 
 # Set logging level
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format="%(asctime)s %(levelname)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
@@ -69,8 +69,13 @@ def main() -> None:
                     start_processing()
                     if len(MISSIONS) > 1:
                         time.sleep(1)
-                        processing_confirm()
-                        ok_processing(window)
+                        ans = processing_confirm()
+                        if ans:
+                            ok_processing(window)
+                        else: 
+                            logging.info('Processing aborted...')
+                            return_mouse_pos(initial_mouse_pos)
+                            break
 
 
                 return_mouse_pos(initial_mouse_pos)

@@ -8,7 +8,6 @@ def get_terra_window() -> object:
     for window in gw.getWindowsWithTitle("DJI Terra"):
         if "DJI Terra" in window.title:
             logging.debug("Found DJI Terra window, returning object.")
-            print(type(window))
             return window
         logging.error("Failed to find DJI Terra window, not running.")
         return None

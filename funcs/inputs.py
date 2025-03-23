@@ -103,9 +103,6 @@ def start_processing() -> None:
     Note that these options will select medium quality cloud,
     disable ortho map and change output datum and geoids to second option.
     """
-    start_processing = (-200, 1000)
-    final_ok = (-720, 820)
-
     logging.info("Start processing.")
     # move_click_pause(window, start_processing)
     pg.moveTo(pg.locateOnScreen('funcs/start_processing.png', confidence=0.8))
@@ -115,7 +112,7 @@ def start_processing() -> None:
 def ok_processing(window) -> None:
     pg.moveTo(pg.locateOnScreen('funcs/ok_processing.png', confidence=0.8))
     pg.click()
-    logging.info("Initiated 'Start Processing' sequence.\nI like your style!")
+    logging.info("Initiated 'Start Processing' sequence.")
     # Move to home button and click to expand
     pg.moveTo(window.topleft[0] + 40, window.topleft[1] + 45)
     pg.click()

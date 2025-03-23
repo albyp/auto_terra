@@ -71,6 +71,10 @@ def on_right_click(x, y, button, pressed):
             stop_script = True
 
 
-def processing_confirm() -> None:
+def processing_confirm() -> bool:
     logging.info("Waiting for confirmation.")
-    pg.confirm("Click OK to continue processing.", "Auto Terra script")
+    res = pg.confirm("Click OK to continue processing.", "Auto Terra script")
+    if res == "OK":
+        logging.info("Processing confirmed.")
+        return True
+    return False
