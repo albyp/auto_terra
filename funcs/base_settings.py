@@ -1,6 +1,7 @@
 import logging
 import pyautogui as pg
-from funcs.utils import pause
+from funcs.utils import pause, script_path
+import os
 
 def select_base_settings(window) -> None:
     """
@@ -35,7 +36,7 @@ def change_coordinate_system(epsg, window) -> None:
     Returns:
         None
     """
-    logging.debug("Opening coordinate sytem modifier")
+    logging.debug("Opening coordinate system modifier")
     # Offset from center
     epsg_search = (-229, -85)
     center_x = window.topleft[0] + window.width / 2
@@ -43,7 +44,7 @@ def change_coordinate_system(epsg, window) -> None:
     x = center_x + epsg_search[0]
     y = center_y + epsg_search[1]
     # pg.moveTo(x, y)
-    pg.moveTo(pg.locateOnScreen('funcs/base_search_button.png')) # testing use for when multiple data directories are imported
+    pg.moveTo(pg.locateOnScreen(os.path.join(script_path, 'res', 'base_search_button.png'))) # testing use for when multiple data directories are imported
     pg.click()
     pause()
 
@@ -83,7 +84,7 @@ def input_coordinates(coordinates:dict, window):
     center_y = window.topleft[1] + window.height / 2
     # X Input
     # pg.moveTo(center_x - 388, center_y - 6)
-    pg.moveTo(pg.locateOnScreen('funcs/base_first_input.png')) # testing for multiple datasets
+    pg.moveTo(pg.locateOnScreen(os.path.join(script_path, 'res', 'base_first_input.png'))) # testing for multiple datasets
     pause()
 
     pg.click()
@@ -106,7 +107,7 @@ def input_coordinates(coordinates:dict, window):
 
     # Save button
     # pg.moveTo(center_x + 420, center_y + 175)
-    pg.moveTo(pg.locateOnScreen('funcs/base_save_button.png', confidence=0.9))
+    pg.moveTo(pg.locateOnScreen(os.path.join(script_path, 'res', 'base_save_button.png'), confidence=0.9))
     pg.click()
     logging.debug("Finished inputting base coordinates.")
     pause()
