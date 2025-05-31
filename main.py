@@ -14,13 +14,13 @@ from funcs.parameters import modify_parameters
 
 # Set logging level
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s %(levelname)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-# Defaults for testing
-from config import MISSION_NAME, MISSION_DATA_DIR, EPSG, BASE_COORDINATES, AUTO_ACCEPT
+# Import config
+from config import MOVE_OUTPUTS, TERRA_OUTPUT_DIR, TERRA_ACCOUNT, PROJECT_OUTPUT_DIR, EPSG, BASE_COORDINATES, AUTO_ACCEPT
 from config import MISSIONS
 PROCESS_BASE = True
 
@@ -87,6 +87,26 @@ def main() -> None:
 
     return_mouse_pos(initial_mouse_pos)
 
+    # Move outputs to Terra output directory
+    if MOVE_OUTPUTS:
+        logging.info("Moving outputs from Terra output directory to project outputs.")
+        
+        terra_outputs = os.path.join(TERRA_OUTPUT_DIR, TERRA_ACCOUNT)
+
+        for mission in MISSIONS:
+            mission_name = mission[0]
+            mission_output_dir = os.path.join(terra_outputs, mission_name, 'lidars', 'terra_las')
+            if 'cloud_merged.las' in os.listdir(mission_output_dir):
+                merged_cloud = os.path.join(mission_output_dir, 'cloud_merged.las')
+                os.rename(merged_cloud)
+                output_path = os.path.join(mission[1], mission_name, PROJECT_OUTPUT_DIR)
+                if not os.path.exists(output_path):
+                    os.makedirs(output_path)
+                shutil.move(merged_cloud, output_path)
+                logging.info(f"Moved {merged_cloud} to {output_path}")
+
+        import shutil
+        import os
 
 # Run program
 if __name__ == '__main__':
