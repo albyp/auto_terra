@@ -1,10 +1,10 @@
 import logging
 import pyautogui as pg
-from funcs.utils import move_click_pause
+from funcs.utils import move_click_pause, pause
 
 def modify_parameters(window) -> None:
     """
-    Modify the oarameters to suit the standard processing workflow.
+    Modify the parameters to suit the standard processing workflow.
 
     Note that these options will select medium quality cloud,
     disable ortho map and change output datum and geoids to second option.
@@ -52,10 +52,16 @@ def modify_parameters(window) -> None:
     move_click_pause(window, advanced_toggle)
     move_click_pause(window, horiz_datum)
     move_click_pause(window, second_datum_input)
-    pg.scroll(-5000)
+    pg.moveTo(500,500) # Janky solution to move mouse away for the locateOnScreen to find the correct button
+    # pg.scroll(-5000)
     # move_click_pause(window, geoid)
-    pg.moveTo(pg.locateOnScreen('funcs/param_geoid_default.png', confidence=0.8))
+    logging.debug("Finding geoid input button.")
+    pg.moveTo(pg.locateOnScreen('funcs/param_geoid_default.png', 3))
+    pause()
     pg.click()
+    pause()
     # move_click_pause(window, second_geoid_input)
+    logging.debug("Changing geoid to second option.")
     pg.moveRel(0, 117)
+    pause()
     pg.click()
