@@ -4,8 +4,11 @@ import keyboard
 from pynput import mouse
 import logging
 from funcs.state import stop_script
+import os
 
 DEBUG_DELAY = 0.2
+
+script_path = os.path.dirname(__file__)
 
 def return_mouse_pos(initial_pos:tuple) -> None:
     """
