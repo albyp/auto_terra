@@ -1,6 +1,7 @@
 import logging
 import pyautogui as pg
-from funcs.utils import move_click_pause, pause
+from funcs.utils import move_click_pause, pause, script_path
+import os
 
 def modify_parameters(window) -> None:
     """
@@ -56,7 +57,7 @@ def modify_parameters(window) -> None:
     # pg.scroll(-5000)
     # move_click_pause(window, geoid)
     logging.debug("Finding geoid input button.")
-    pg.moveTo(pg.locateOnScreen('funcs/param_geoid_default.png', 3))
+    pg.moveTo(pg.locateOnScreen(os.path.join(script_path, 'res', 'param_geoid_default.png'), 3))
     pause()
     pg.click()
     pause()

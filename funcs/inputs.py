@@ -1,7 +1,8 @@
 import pyautogui as pg
 import logging
-from funcs.utils import pause, move_click_pause
+from funcs.utils import pause, script_path
 import time
+import os
 
 def new_lidar_mission(window) -> None:
     """
@@ -98,19 +99,19 @@ def input_mission_data(data_dir:str, window) -> None:
 
 def start_processing() -> None:
     """
-    Modify the oarameters to suit the standard processing workflow.
+    Modify the parameters to suit the standard processing workflow.
 
     Note that these options will select medium quality cloud,
     disable ortho map and change output datum and geoids to second option.
     """
     logging.info("Start processing.")
     # move_click_pause(window, start_processing)
-    pg.moveTo(pg.locateOnScreen('funcs/start_processing.png', confidence=0.8))
+    pg.moveTo(pg.locateOnScreen(os.path.join(script_path, 'res', 'start_processing.png'), confidence=0.8))
     pg.click()
 
 
 def ok_processing(window) -> None:
-    pg.moveTo(pg.locateOnScreen('funcs/ok_processing.png', confidence=0.8))
+    pg.moveTo(pg.locateOnScreen(os.path.join(script_path, 'res', 'ok_processing.png'), confidence=0.8))
     pg.click()
     logging.info("Initiated 'Start Processing' sequence.")
     # Move to home button and click to expand
