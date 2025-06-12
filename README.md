@@ -103,7 +103,7 @@ There is an `example.config.py` containing the boilerplate for the config. Updat
 
 ## Changelog
 
-[Changelog](CHANGELOG)
+[Changelog](CHANGELOG.md)
 
 ## License
 
