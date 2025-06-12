@@ -1,2 +1,4 @@
 pyautogui
 pygetwindow
+opencv-python
+keyboard
