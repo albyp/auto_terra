@@ -1,6 +1,6 @@
 import logging
 import pyautogui as pg
-from funcs.utils import move_click_pause, pause, script_path
+from funcs.utils import move_click_pause, toggle_button, pause, script_path
 import os
 
 def modify_parameters(window) -> None:
