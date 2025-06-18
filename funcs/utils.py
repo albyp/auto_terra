@@ -56,6 +56,42 @@ def move_click_pause(window, offset: tuple[int, int]) -> None:
     pause()
 
 
+def toggle_button(toggleOn:bool, haystackImg):
+    """
+    Toggle a button on or off based on the provided state and locate within a haystack image region.
+    Allows to precisely locate a toggle button within a specific region of the screen.
+
+    Args:
+        toggleOn (bool): Defines whether to search for a toggle button in the "on" or "off" state (will result in the opposite state)
+        haystackImg (path): Path to the image file that represents the region where the toggle button is located.
+    Returns:
+        None
+    Raises:
+        Exception: If the haystack image is not found on the screen or if an error occurs during the process.
+    """
+    try:
+        logging.debug(f"Locating toggle haystack image {haystackImg}.")
+        haystackBox = pg.locateOnScreen(haystackImg)
+        
+        if haystackBox is not None and toggleOn:
+            logging.debug(f"Locating toggle button within haystack image.")
+            toggleButton = pg.locateOnScreen(os.path.join(script_path, 'res', 'res/toggle_on.png'), region=haystackBox)
+        elif haystackBox is not None and not toggleOn:
+            logging.debug("Locating toggle button within haystack image.")
+            toggleButton = pg.locateOnScreen(os.path.join(script_path, 'res', 'res/toggle_off.png'), region=haystackBox)
+        else:
+            logging.error("Haystack image not found on screen.")
+            return
+
+        logging.debug("Moving mouse and clicking toggle button.")
+        pg.moveTo(toggleButton)
+        pg.click()
+        pause()
+
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+
+
 def check_interrupt() -> None:
     """Continuously checks for interruption (esc key or right-click)."""
     global stop_script
