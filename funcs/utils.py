@@ -6,6 +6,7 @@ import logging
 from funcs.state import stop_script
 import os
 
+# Use 0.3 seconds for compatibility with slower systems
 DEBUG_DELAY = 0.3
 
 script_path = os.path.dirname(__file__)
